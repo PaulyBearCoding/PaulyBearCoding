@@ -18,6 +18,6 @@ You may not:
 
 If you're interested in collaborating, licensing, or hiring — please contact:
 
-📧 paul@yourdomain.com
+📧 paul@gmail.com
 
 Use of this repository implies acceptance of these terms.
