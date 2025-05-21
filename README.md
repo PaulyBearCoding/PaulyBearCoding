@@ -63,7 +63,6 @@ A cross-platform experience built with modern tech to power meaningful digital c
 ![GitHub stats](https://github-readme-stats.vercel.app/api?username=PaulyBearCoding&show_icons=true&theme=dark)  
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=PaulyBearCoding&layout=compact&theme=dark)  
 ![GitHub Streak](https://streak-stats.demolab.com?user=PaulyBearCoding&theme=dark)
-
 ---
 
 ## 📄 Resume
