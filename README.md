@@ -18,23 +18,46 @@ A cross-platform experience built with modern tech to power meaningful digital c
 - 🧩 Scalable backend with Express, MongoDB, and Socket.IO
 - 🔐 Security-first architecture with E2E encryption, rate-limiting, and validation layers
 
-_This is my flagship project, evolving daily. Stay tuned._
+---
+
+## 🧰 Quick Stack Overview
+
+| Frontend        | Backend               | DevOps & Infra         | Realtime / Media            |
+|-----------------|-----------------------|-------------------------|-----------------------------|
+| React.js / Vite | Node.js + Express     | Docker, GitHub CI/CD    | WebRTC, Socket.IO, libsignal (planned) |
+| Flutter (mobile)| MongoDB + Mongoose    | NGINX, Adminer (internal)| TURN/STUN, FFmpeg, Adaptive Simulcast |
+| HTML/CSS/SCSS   | JWT Auth, bcrypt, Helmet.js | CI pipelines, Postman, Admin UI | Audio/video group calling, screen sharing |
 
 ---
 
-## 🧰 Tech Stack
+## 🧠 Full Tech Stack
 
-| Frontend        | Backend             | DevOps & Infra    | Realtime / Media     |
-|-----------------|---------------------|-------------------|----------------------|
-| React.js / Vite | Node.js + Express   | Docker, GitHub CI | WebRTC + Socket.IO   |
-| Flutter (mobile)| MongoDB + Mongoose  | NGINX, Admin UI   | TURN/STUN + FFmpeg   |
+| Category      | Tools Used                                                                 |
+|---------------|----------------------------------------------------------------------------|
+| **Languages** | JavaScript, TypeScript, Dart, HTML, CSS                                    |
+| **Frontend**  | React, Flutter, Tailwind (optional), Responsive Layouts                    |
+| **Backend**   | Node.js, Express.js, MongoDB, Mongoose                                     |
+| **Realtime**  | WebRTC, Socket.IO, TURN/STUN, libsignal (planned), FFmpeg                  |
+| **Authentication & Security** | JWT, bcrypt, Helmet.js, input validation, CSRF protection       |
+| **Media Handling** | FFmpeg, Adaptive streaming, Image optimization, Video playback UI     |
+| **Testing**   | Cypress, Flutter integration_test                                          |
+| **DevOps / Infra** | Docker, CI/CD pipeline, NGINX, Adminer                                 |
+| **Tools**     | Git, Postman, Figma, API service layers, Custom analytics & logging        |
+
+---
+
+### 🧪 Testing & Security
+
+- ✅ **Web:** Cypress end-to-end test suite  
+- ✅ **Mobile:** Flutter `integration_test` coverage  
+- ✅ **Security:** Password hashing (bcrypt), session tracking, rate-limiting, CSRF protection, input sanitization, validation middleware
 
 ---
 
 ## 📈 GitHub Stats
 
-![GitHub stats](https://github-readme-stats.vercel.app/api?username=PaulyBearCoding&show_icons=true&theme=dark)
-![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=PaulyBearCoding&layout=compact&theme=dark)
+![GitHub stats](https://github-readme-stats.vercel.app/api?username=PaulyBearCoding&show_icons=true&theme=dark)  
+![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=PaulyBearCoding&layout=compact&theme=dark)  
 ![GitHub Streak](https://streak-stats.demolab.com?user=PaulyBearCoding&theme=dark)
 
 ---
@@ -58,7 +81,7 @@ Unless otherwise noted:
 
 ## ✉️ Connect
 
-- GitHub: [@PaulyBearCoding](https://github.com/PaulyBearCoding)
+- GitHub: [@PaulyBearCoding](https://github.com/PaulyBearCoding)  
 - Email: paul@yourdomain.com *(replace with your real one)*
 
 ---
