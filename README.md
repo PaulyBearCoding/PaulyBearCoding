@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./github-banner.png" alt="PaulyBearCoding banner" />
+</p>
+
 # 👋 Hey, I'm Paul — aka **PaulyBearCoding**
 
 🧠 Full-Stack Engineer | Platform Architect | Real-Time App Specialist  
