@@ -86,7 +86,7 @@ Unless otherwise noted:
 ## ✉️ Connect
 
 - GitHub: [@PaulyBearCoding](https://github.com/PaulyBearCoding)  
-- Email: paul@yourdomain.com *(replace with your real one)*
+- Email: paulybearcoding@gmail.com
 
 ---
 
