@@ -40,7 +40,7 @@ A cross-platform experience built with modern tech to power meaningful digital c
 |---------------|----------------------------------------------------------------------------|
 | **Languages** | JavaScript, TypeScript, Dart, HTML, CSS                                    |
 | **Frontend**  | React, Flutter, Tailwind (optional), Responsive Layouts                    |
-| **Backend**   | Node.js, Express.js, MongoDB, Mongoose                                     |
+| **Backend**   | Node.js, Express.js, MongoDB, Mongoose, Supabase                           |
 | **Realtime**  | WebRTC, Socket.IO, TURN/STUN, libsignal (planned), FFmpeg                  |
 | **Authentication & Security** | JWT, bcrypt, Helmet.js, input validation, CSRF protection       |
 | **Media Handling** | FFmpeg, Adaptive streaming, Image optimization, Video playback UI     |
