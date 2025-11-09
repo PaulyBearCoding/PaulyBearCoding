@@ -30,3 +30,15 @@ build/
 # Testing
 coverage/
 .nyc_output/
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+# Local Netlify folder
+.netlify
+
+# Claude Code local files
+CLAUDE.md
+.claude/
