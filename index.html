@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SocialConnect - Video Chat & Groups</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>🌐 SocialConnect</h1>
+            <div class="user-info">
+                <span id="currentUser">Guest</span>
+                <button id="logoutBtn" class="btn btn-secondary" style="display:none;">Logout</button>
+            </div>
+        </header>
+
+        <!-- Login Screen -->
+        <div id="loginScreen" class="screen active">
+            <div class="login-box">
+                <h2>Welcome to SocialConnect</h2>
+                <input type="text" id="usernameInput" placeholder="Enter your username" />
+                <button id="loginBtn" class="btn btn-primary">Join Now</button>
+            </div>
+        </div>
+
+        <!-- Main App Screen -->
+        <div id="mainScreen" class="screen">
+            <div class="main-layout">
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <div class="sidebar-section">
+                        <h3>Actions</h3>
+                        <button id="createGroupBtn" class="btn btn-primary">Create Group</button>
+                        <button id="startCallBtn" class="btn btn-success">Start Call</button>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3>Online Users</h3>
+                        <ul id="usersList" class="users-list"></ul>
+                    </div>
+
+                    <div class="sidebar-section">
+                        <h3>My Groups</h3>
+                        <ul id="groupsList" class="groups-list"></ul>
+                    </div>
+                </aside>
+
+                <!-- Main Content -->
+                <main class="main-content">
+                    <div id="welcomeMessage" class="welcome">
+                        <h2>Welcome to SocialConnect!</h2>
+                        <p>Connect with friends through video calls and group chats.</p>
+                        <ul class="features">
+                            <li>📞 Make video and audio calls</li>
+                            <li>👥 Create and manage groups</li>
+                            <li>💬 Real-time communication</li>
+                        </ul>
+                    </div>
+
+                    <!-- Video Call Area -->
+                    <div id="callArea" style="display:none;">
+                        <div class="video-container">
+                            <video id="localVideo" autoplay muted playsinline></video>
+                            <video id="remoteVideo" autoplay playsinline></video>
+                        </div>
+                        <div class="call-controls">
+                            <button id="toggleAudioBtn" class="btn btn-control">🎤 Mute</button>
+                            <button id="toggleVideoBtn" class="btn btn-control">📹 Stop Video</button>
+                            <button id="endCallBtn" class="btn btn-danger">End Call</button>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+    </div>
+
+    <!-- Create Group Modal -->
+    <div id="createGroupModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Create New Group</h2>
+                <button class="collapse-btn" data-modal="createGroupModal">−</button>
+                <button class="close-btn" data-modal="createGroupModal">×</button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="groupNameInput" placeholder="Group name" />
+                <div class="user-selection">
+                    <h4>Select Members:</h4>
+                    <div id="membersList"></div>
+                </div>
+                <button id="confirmCreateGroupBtn" class="btn btn-primary">Create Group</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Group Details Modal -->
+    <div id="groupDetailsModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="groupDetailsTitle">Group Details</h2>
+                <button class="collapse-btn" data-modal="groupDetailsModal">−</button>
+                <button class="close-btn" data-modal="groupDetailsModal">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="group-info">
+                    <h4>Members:</h4>
+                    <ul id="groupMembersList"></ul>
+                </div>
+                <div class="group-actions">
+                    <button id="addMemberBtn" class="btn btn-primary">Add Members</button>
+                    <button id="groupCallBtn" class="btn btn-success">Start Group Call</button>
+                    <button id="leaveGroupBtn" class="btn btn-danger">Leave Group</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Members Modal -->
+    <div id="addMembersModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add Members</h2>
+                <button class="collapse-btn" data-modal="addMembersModal">−</button>
+                <button class="close-btn" data-modal="addMembersModal">×</button>
+            </div>
+            <div class="modal-body">
+                <div id="availableUsersList"></div>
+                <button id="confirmAddMembersBtn" class="btn btn-primary">Add Selected</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Incoming Call Modal -->
+    <div id="incomingCallModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>📞 Incoming Call</h2>
+            </div>
+            <div class="modal-body">
+                <p id="callerName">Someone is calling...</p>
+                <div class="call-actions">
+                    <button id="acceptCallBtn" class="btn btn-success">Accept</button>
+                    <button id="rejectCallBtn" class="btn btn-danger">Reject</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Call User Modal -->
+    <div id="callUserModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Start a Call</h2>
+                <button class="collapse-btn" data-modal="callUserModal">−</button>
+                <button class="close-btn" data-modal="callUserModal">×</button>
+            </div>
+            <div class="modal-body">
+                <h4>Select user to call:</h4>
+                <div id="callUsersList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
