@@ -1,0 +1,104 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: gjyl-postgres
+    environment:
+      POSTGRES_USER: gjyl
+      POSTGRES_PASSWORD: gjyl_password
+      POSTGRES_DB: gjyl
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U gjyl"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: gjyl-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  minio:
+    image: minio/minio:latest
+    container_name: gjyl-minio
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: gjyl_minio
+      MINIO_ROOT_PASSWORD: gjyl_minio_secret_key_2024
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+      interval: 30s
+      timeout: 20s
+      retries: 3
+
+  minio-init:
+    image: minio/mc:latest
+    container_name: gjyl-minio-init
+    depends_on:
+      minio:
+        condition: service_healthy
+    entrypoint: >
+      /bin/sh -c "
+      mc alias set gjyl http://minio:9000 gjyl_minio gjyl_minio_secret_key_2024;
+      mc mb gjyl/gjyl-uploads --ignore-existing;
+      mc anonymous set download gjyl/gjyl-uploads;
+      exit 0;
+      "
+
+  nginx-rtmp:
+    build:
+      context: ./infra/docker/nginx-rtmp
+      dockerfile: Dockerfile
+    container_name: gjyl-nginx-rtmp
+    ports:
+      - "1935:1935"
+      - "8080:8080"
+    volumes:
+      - hls_data:/var/hls
+      - ./infra/docker/nginx-rtmp/nginx.conf:/etc/nginx/nginx.conf
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/stat"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: gjyl-mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+
+  ffmpeg:
+    image: jrottenberg/ffmpeg:latest
+    container_name: gjyl-ffmpeg
+    volumes:
+      - ./fixtures:/fixtures
+      - hls_data:/var/hls
+    entrypoint: /bin/sh
+    tty: true
+    stdin_open: true
+
+volumes:
+  postgres_data:
+  redis_data:
+  minio_data:
+  hls_data:

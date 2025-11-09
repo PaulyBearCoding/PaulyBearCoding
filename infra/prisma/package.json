@@ -1,0 +1,20 @@
+{
+  "name": "@gjyl/prisma",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "migrate": "prisma migrate dev",
+    "migrate:prod": "prisma migrate deploy",
+    "seed": "tsx seed.ts",
+    "studio": "prisma studio",
+    "generate": "prisma generate"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.7.1"
+  },
+  "devDependencies": {
+    "prisma": "^5.7.1",
+    "tsx": "^4.7.0",
+    "@types/node": "^20.10.6"
+  }
+}
