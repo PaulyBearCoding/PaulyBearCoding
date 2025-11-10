@@ -37,7 +37,7 @@ const endCallBtn = document.getElementById('endCallBtn');
 
 // Initialize WebSocket Connection
 function connectWebSocket() {
-    ws = new WebSocket('ws://localhost:8080');
+    ws = new WebSocket('ws://localhost:8081');
 
     ws.onopen = () => {
         console.log('Connected to server');
