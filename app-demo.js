@@ -1,12 +1,24 @@
 // ============================================================================
 // SOCIALCONNECT - FRONTEND DEMO VERSION
-// Uses mock data + Pexels API for realistic user photos
+// Uses mock data with curated Pexels images
 // No backend required - pure frontend demonstration
 // ============================================================================
 
-// Pexels API Configuration
-const PEXELS_API_KEY = 'd7lIFtiwhh6b3p0I4JyLzZakJJhzn7YEZ3Hs1Z5EEDUzj8tmkgybs9s6';
-const PEXELS_API_URL = 'https://api.pexels.com/v1';
+// Demo Images - Centralized Pexels URLs
+const demoAvatars = [
+  "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/1516680/pexels-photo-1516680.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/1024311/pexels-photo-1024311.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/1580271/pexels-photo-1580271.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/1520760/pexels-photo-1520760.jpeg?auto=compress&cs=tinysrgb&w=400",
+  "https://images.pexels.com/photos/1587009/pexels-photo-1587009.jpeg?auto=compress&cs=tinysrgb&w=400"
+];
 
 // Global State
 let currentUser = null;
@@ -51,52 +63,13 @@ const endCallBtn = document.getElementById('endCallBtn');
 let currentChatUser = null;
 
 // ============================================================================
-// PEXELS API FUNCTIONS
+// DEMO IMAGE ASSIGNMENT
 // ============================================================================
 
-async function fetchPexelsPhotos(count = 15) {
-    try {
-        const response = await fetch(
-            `${PEXELS_API_URL}/search?query=portrait people&orientation=portrait&per_page=${count}`,
-            {
-                headers: {
-                    'Authorization': PEXELS_API_KEY
-                }
-            }
-        );
-
-        if (!response.ok) {
-            throw new Error(`Pexels API error: ${response.status}`);
-        }
-
-        const data = await response.json();
-        return data.photos;
-    } catch (error) {
-        console.error('Failed to fetch Pexels photos:', error);
-        // Return placeholder if API fails
-        return generatePlaceholderPhotos(count);
-    }
-}
-
-function generatePlaceholderPhotos(count) {
-    // Fallback placeholder images if Pexels API fails
-    return Array.from({ length: count }, (_, i) => ({
-        src: {
-            portrait: `https://via.placeholder.com/400x600/667eea/ffffff?text=User+${i+1}`
-        },
-        photographer: 'Demo User'
-    }));
-}
-
-async function assignPhotosToUsers() {
-    const photos = await fetchPexelsPhotos(MOCK_USERNAMES.length);
-
+function assignPhotosToUsers() {
+    // Use curated Pexels images from demoAvatars
     MOCK_USERNAMES.forEach((username, index) => {
-        if (photos[index]) {
-            userPhotos[username] = photos[index].src.portrait;
-        } else {
-            userPhotos[username] = `https://via.placeholder.com/400x600/667eea/ffffff?text=${encodeURIComponent(username)}`;
-        }
+        userPhotos[username] = demoAvatars[index % demoAvatars.length];
     });
 }
 
@@ -141,7 +114,7 @@ function renderOnlineUsers() {
         const userItem = document.createElement('div');
         userItem.className = 'user-item';
         userItem.innerHTML = `
-            <img src="${userPhotos[username] || 'https://via.placeholder.com/40'}"
+            <img src="${userPhotos[username] || demoAvatars[0]}"
                  alt="${username}"
                  class="user-avatar">
             <span class="user-name">${username}</span>
@@ -187,8 +160,8 @@ loginBtn.addEventListener('click', async () => {
 
     currentUser = username;
 
-    // Fetch photos from Pexels
-    await assignPhotosToUsers();
+    // Assign demo photos to users
+    assignPhotosToUsers();
 
     // Initialize mock data
     initializeMockData();
@@ -233,7 +206,7 @@ function openChat(username) {
     currentChatUser = username;
 
     // Update chat UI
-    chatUserAvatar.src = userPhotos[username] || 'https://via.placeholder.com/48';
+    chatUserAvatar.src = userPhotos[username] || demoAvatars[0];
     chatUserName.textContent = username;
 
     // Hide welcome, show chat
@@ -284,8 +257,8 @@ function startMockCall(targetUser) {
     inCall = true;
 
     // Use user photos as "video" frames
-    localVideo.src = userPhotos[currentUser] || 'https://via.placeholder.com/640x480';
-    remoteVideo.src = userPhotos[targetUser] || 'https://via.placeholder.com/640x480';
+    localVideo.src = userPhotos[currentUser] || demoAvatars[0];
+    remoteVideo.src = userPhotos[targetUser] || demoAvatars[1];
 
     // Update remote label
     remoteLabel.textContent = targetUser;
@@ -428,5 +401,5 @@ document.head.appendChild(style);
 // INITIALIZATION
 // ============================================================================
 
-console.log('SocialConnect Demo Loaded - Frontend Only with Pexels API');
-console.log('This is a UI demonstration with mock data and real photos from Pexels');
+console.log('SocialConnect Demo Loaded - Frontend Only');
+console.log('This is a UI demonstration with mock data and curated Pexels images');
